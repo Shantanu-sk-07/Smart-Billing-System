@@ -32,7 +32,7 @@ export default defineConfig({
     dedupe: ['react', 'react-dom'] // Add dedupe to prevent multiple React instances
   },
    server: {
-    port: 7000,
+    port: 7070,
     open: true,
     host: true
   }

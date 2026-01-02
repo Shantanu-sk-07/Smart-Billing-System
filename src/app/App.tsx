@@ -1,10 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
+import { NavigationScroll } from '@/common'
+import router from '@/routes';
 import { useEffect } from 'react';
-// import Layout from '../containers/layout/static/Header'; 
-// import DashboardPage from '../views/dashboardPages/DashboardPage';
-import ERPMedoLogin from '@/views/auth/ERPMedoLogin';
+import { CssBaseline } from '@mui/material';
 
-function App() {
- useEffect(() => {
+const App = () => {
+   useEffect(() => {
     // Check if running in Electron
     if (window.ipcRenderer) {
       window.ipcRenderer.on('main-process-message', (_event, message) => {
@@ -12,14 +13,13 @@ function App() {
       })
     }
   }, [])
-  
   return (
-    <>
-    {/* <Layout><DashboardPage /></Layout> */}    
-      <ERPMedoLogin/>
-      
-    </>
-  );
+      <NavigationScroll>
+         <CssBaseline />
+          <RouterProvider router={router} />
+        
+      </NavigationScroll>
+  )
 }
 
-export default App;
+export default App

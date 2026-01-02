@@ -1,28 +1,23 @@
 import { lazy } from "react";
-import Loadable from "../common/Loadable";
+import Loadable from "@/common/Loadable";
+import { RoutePaths } from "@/constants/RoutePaths";
 
-const Sample = Loadable(lazy(() => import('../views/Sample')));
-const Login = Loadable(lazy(() => import('../views/auth/Login')));
-const SignPage = Loadable(lazy(() => import('../views/auth/Signup')));
-
+const LoginMobile = Loadable(lazy(() => import("@/views/auth/LoginMobile")));
+const ForgotPassword = Loadable(lazy(() => import("@/views/auth/ForgotPassword")));
 
 const MainRoutes = {
-  path: '/',
+  path: "/",
   children: [
     {
-      path: 'default',
-      element: <Sample />
+      path: RoutePaths.Login,
+      element: <LoginMobile />
     },
     {
-      path: 'login',
-      element: <Login />
+      path: RoutePaths.ForgotPassword,
+      element: <ForgotPassword />
     },
-    {
-      path: 'register',
-      element: <SignPage />
-    },
+   
   ]
 };
-
 
 export default MainRoutes;
