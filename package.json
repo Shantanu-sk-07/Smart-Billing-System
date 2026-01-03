@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "package": "electron-builder --win --publish never",
+    "package": "electron-builder",
+    "package:win": "electron-builder --win",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -20,11 +21,16 @@
       "output": "release"
     },
     "files": [
+      "dist-electron/**/*",
       "dist/**/*",
-      "dist-electron/**/*"
+      "package.json"
     ],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "public/icon.ico"
+    },
+    "extraMetadata": {
+      "version": "1.0.0"
     }
   },
   "dependencies": {
