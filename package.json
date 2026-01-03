@@ -31,7 +31,9 @@
     },
     "extraMetadata": {
       "version": "1.0.0"
-    }
+    },
+     "publish": null
+
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
