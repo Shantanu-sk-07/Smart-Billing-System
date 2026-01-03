@@ -1,4 +1,4 @@
-name: Safe CI + Deploy + Release
+name: Frontend Deployed
 
 on:
   push:
