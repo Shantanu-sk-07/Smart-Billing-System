@@ -6,15 +6,15 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
+    // "ignoreDeprecations": "6.0",
     "paths": {
       "@/*": ["src/*"]
     },
     
 
     /* Bundler mode */
-    // "moduleResolution": "bundler",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    // "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,

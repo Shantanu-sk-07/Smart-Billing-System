@@ -1,15 +1,14 @@
-import { Suspense, type ComponentType, type LazyExoticComponent } from 'react';
-import Loader from './Loader';
+import { Suspense, ComponentType } from 'react';
+import LoadingScreen from './Loader';
 
-// Generic HOC to wrap lazy-loaded components with Suspense and Loader fallback
-export default function Loadable<T extends object>(
-  Component: LazyExoticComponent<ComponentType<T>>
-): ComponentType<T> {
-  const WrappedComponent = (props: T) => (
-    <Suspense fallback={<Loader />}>
-      <Component {...props} />
-    </Suspense>
-  );
+const Loadable = <P extends object>(Component: ComponentType<P>) => {
+  return function LoadableComponent(props: P) {
+    return (
+      <Suspense fallback={<LoadingScreen />}>
+        <Component {...props} />
+      </Suspense>
+    );
+  };
+};
 
-  return WrappedComponent;
-}
+export default Loadable;

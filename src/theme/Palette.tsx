@@ -200,13 +200,12 @@ export default function Palette(mode: PaletteMode, presetColor: string) {
 
     divider: isDark ? '#444444' : colors.grey200,
 
-    background: {
-      paper: isDark ? '#1e1e1e' : '#f9fafb',
-      default: isDark ? '#121212' : '#fafafa',
-      box: isDark? '#1e1e1e': 
-            'linear-gradient(180deg, #1ea3ff 0%, #0b60b8 60%, #0452a6 100%)',
-      
-    },
+   background: {
+  default: isDark ? '#121212' : '#ffffff',
+  paper: isDark ? '#1e1e1e' : '#ffffff',
+  box: isDark ? '#1e1e1e' : '#f4f6f8'
+}
+
   };
 
   return createTheme({ palette });
