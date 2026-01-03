@@ -1,4 +1,4 @@
-name: Build and Package Electron App
+name: Build & Release Windows App
 
 on:
   push:
@@ -7,29 +7,37 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-windows:
+  build-win:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build React + Electron
+      - name: Build project
         run: npm run build
 
-      - name: Package Electron app (Windows)
+      - name: Package Electron App
         run: npm run package:win
 
-      - name: Upload Windows Installer
-        uses: actions/upload-artifact@v3
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: MedicalBillingERP-Win
-          path: release/*.exe
+          tag_name: v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows Installer
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/MedicalBillingERP\ Setup\ *.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
