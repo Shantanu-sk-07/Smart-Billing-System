@@ -1,9 +1,8 @@
-import { createBrowserRouter } from "react-router-dom";
-import MainRoutes from "./MainRoutes";
+import { createHashRouter } from "react-router-dom";
 import AuthenticationRoutes from "./AuthenticationRoutes";
+import MainRoutes from "./MainRoutes";
 
-// BrowserRouter version (clean URL)
-const router = createBrowserRouter([
+const router = createHashRouter([
   AuthenticationRoutes,
   MainRoutes
 ]);
