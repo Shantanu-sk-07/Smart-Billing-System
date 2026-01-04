@@ -5,6 +5,7 @@ import { CssBaseline } from "@mui/material";
 
 const App = () => {
   return (
+   
     <NavigationScroll>
       <CssBaseline />
       <RouterProvider router={router} />
