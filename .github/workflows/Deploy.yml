@@ -1,46 +1,32 @@
-name: Frontend Deployed
+name: Deploy Frontend
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - 'v*'
-  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
 
 jobs:
-  ci-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Install Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install deps
+        run: npm install
 
-      - name: Run ESLint
-        run: npm run lint
-
-      - name: Build frontend
+      - name: Build
         run: npm run build
 
-      - name: Deploy frontend to server
-        uses: appleboy/scp-action@v0.1.7
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: "dist/*"
-          target: "/var/www/vei"
-          strip_components: 1
-          rm: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
